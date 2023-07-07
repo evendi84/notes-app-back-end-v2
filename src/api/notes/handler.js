@@ -1,20 +1,17 @@
-const { payload } = require('@hapi/hapi');
-
 class NotesHandler {
   constructor(service) {
-   this._service = service;
+    this._service = service;
 
-   this.postNoteHandler = this.postNoteHandler.bind(this);
-   this.getNotesHandler = this.getNotesHandler.bind(this);
-   this.getNoteByIdHandler = this.getNoteByIdHandler.bind(this);
-   this.putNoteByIdHandler = this.putNoteByIdHandler.bind(this);
-   this.deleteNoteByIdHandler = this.deleteNoteByIdHandler.bind(this);
+    this.postNoteHandler = this.postNoteHandler.bind(this);
+    this.getNotesHandler = this.getNotesHandler.bind(this);
+    this.getNoteByIdHandler = this.getNoteByIdHandler.bind(this);
+    this.putNoteByIdHandler = this.putNoteByIdHandler.bind(this);
+    this.deleteNoteByIdHandler = this.deleteNoteByIdHandler.bind(this);
   }
 
   postNoteHandler(request, h){
     try {
       const {title = 'untitled', body, tags} = request.payload;
-
       const noteId = this._service.addNote({title, body, tags});
 
       const response = h.response({
@@ -69,7 +66,7 @@ class NotesHandler {
     }
   }
 
-  putNoteByIdHandler(request){
+  putNoteByIdHandler(request, h){
     try {
       const {id} = request.params;
 

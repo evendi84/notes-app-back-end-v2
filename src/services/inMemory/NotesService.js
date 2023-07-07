@@ -8,7 +8,7 @@ class NotesService {
   addNote({title, body, tags}) {
     const id = nanoid(16);
     const createdAt = new Date().toISOString();
-    const updatedAt = createAt;
+    const updatedAt = createdAt;
 
     const newNote = {
       title, tags, body, id, createdAt, updatedAt,
